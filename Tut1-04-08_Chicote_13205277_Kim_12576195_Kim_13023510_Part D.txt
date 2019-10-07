@@ -1,5 +1,7 @@
 /* 	Database Fundamentals, Assignment Part D 	
  	Jaiden Chicote jaiden.chicote@student.uts.eu.au	
+	Kim Youngsang  13023510@student.uts.edu.au
+	Kim Minho      12576195@student.uts.edu.au
 
 	This database constructs the owner, the property
 	owned by owner and the advertisement based on the property.
@@ -7,76 +9,52 @@
 	Website: https://www.domain.com.au/	*/
 
 
--- Coded Jaiden Chicote
-
-drop table owners;
-drop table ownership;
-drop table property;
+drop table owners       cascade;
+drop table ownership    cascade;
+drop table property     cascade;
 
 create table owners (
-	OwnerID		varchar(10)	        NOT NULL,
-	OwnerFName	varchar(10),
-	OwnerLName	varchar(10),
-	OwnerEmail	varchar(50),
-	OwnerContact	int,
-	PRIMARY KEY (OwnerID)
+	ownerID		    varchar(10)	        NOT NULL,
+	ownerFName	    varchar(10),
+	ownerLName	    varchar(10),
+	ownerEmail	    varchar(50),
+	ownerContact	varchar(30),
+	PRIMARY KEY (ownerID)
 );
 
-create table ownership
-(
-    OwnerID    varchar(10) NOT NULL,
-    PropertyID varchar(10) NOT NULL,
-    FOREIGN KEY (OwnerID) references owners,
-    FOREIGN KEY (PropertyID) references property
-);
-
-create table property
-(
-    PropertyID       varchar(10)        NOT NULL,
-    StreetNO         varchar(10)        NOT NULL,
-    StreetName       varchar(10)        NOT NULL,
-    PropertyPostcode int                NOT NULL,
-    Suburb           varchar(20)        NOT NULL,
-    State            varchar(20)        NOT NULL,
-    NoBedrooms       int                NOT NULL,
-    NoBathrooms      int                NOT NULL,
-    NoParking        int                NOT NULL,
-    PropertyType     character(10)      NOT NULL,
-    BuildArea        int,
-    LandArea         int,
-    PRIMARY KEY (PropertyID)
-);
-
-
-insert into owners values ('O019285', 'Micky', 'Jones', 'micky.jones@gmail.com', 0923876543);
-insert into owners values ('O197612', 'Neo', 'Anderson', 'neo.anderson@hotmail.com', 0456743985);
-insert into owners values ('O985328', 'Juliet', 'Chicote', 'juliet_chicote@gmail.com', 0410762354);
-insert into owners values ('O784321', 'Abby', 'Taperston', 'abby_Tap@msn.com', 0319872345);
+insert into owners values ('O019285', 'Micky', 'Jones', 'micky.jones@gmail.com', '0923876543');
+insert into owners values ('O197612', 'Neo', 'Anderson', 'neo.anderson@hotmail.com', '0456743985');
+insert into owners values ('O985328', 'Juliet', 'Chicote', 'juliet_chicote@gmail.com', '0410762354');
+insert into owners values ('O784321', 'Abby', 'Taperston', 'abby_Tap@msn.com', '0319872345');
 insert into owners (OwnerID, OwnerFName, OwnerLName, OwnerEmail) values ('O856431', 'Andy', 'Lockertson', 'andy_loc@hotmail.com');
-insert into owners values ('O397422', 'Julia', 'Somerson', 'julia.somerson@gmail.com', 0467943128);
+insert into owners values ('O397422', 'Julia', 'Somerson', 'julia.somerson@gmail.com', '0467943128');
 
-insert into owners values ('O112924', 'Kylie', 'Cook', 'kylie.cook@gmail.com', 0940294768);
-insert into owners values ('O907066', 'Dayami', 'Archer', 'dayami_archer@hotmail.com', 0653689630);
-insert into owners values ('O858242', 'Jaidyn', 'Woodard', 'jaidyn.woodard@gmail.com', 0928452997);
-insert into owners values ('O467689', 'Jazmyn', 'Stout', 'jazmyn_stout@msn.com', 0513775588);
+insert into owners values ('O112924', 'Kylie', 'Cook', 'kylie.cook@gmail.com', '0940294768');
+insert into owners values ('O907066', 'Dayami', 'Archer', 'dayami_archer@hotmail.com', '0653689630');
+insert into owners values ('O858242', 'Jaidyn', 'Woodard', 'jaidyn.woodard@gmail.com', '0928452997');
+insert into owners values ('O467689', 'Jazmyn', 'Stout', 'jazmyn_stout@msn.com', '0513775588');
 insert into owners (OwnerID, OwnerFName, OwnerLName, OwnerEmail) values ('O840716', 'Milagros', 'Marshall', 'milagros_marshall@hotmail.com');
-insert into owners values ('O451674', 'Dallas', 'Middleton', 'dallas_middleton@gmail.com', 0591864571);
+insert into owners values ('O451674', 'Dallas', 'Middleton', 'dallas_middleton@gmail.com', '0591864571');
 
-insert into owners values ('O579628', 'Royce', 'Olsen', 'royce_olsen@gmail.com', 0684497047);
-insert into owners values ('O932653', 'Cassidy', 'Lee', 'cassidy_lee@hotmail.com', 0470079641);
-insert into owners values ('O760124', 'Cody', 'Mccarthy', 'cody_mccarthy@gmail.com', 0558192786);
+insert into owners values ('O579628', 'Royce', 'Olsen', 'royce_olsen@gmail.com', '0684497047');
+insert into owners values ('O932653', 'Cassidy', 'Lee', 'cassidy_lee@hotmail.com', '0470079641');
+insert into owners values ('O760124', 'Cody', 'Mccarthy', 'cody_mccarthy@gmail.com', '0558192786');
 
-insert into ownership values('O019285', 'P13S78N7');
-insert into ownership values('O784321', 'P13S78N7');
-insert into ownership values('O112924', '6GR53F7D');
-insert into ownership values('O197612', '6GR53F7D');
-insert into ownership values('O760124', 'AD2WMHM7');
-insert into ownership values('O760124', '5O168FZ0');
-insert into ownership values('O467689', 'CS11ICLF');
-insert into ownership values('O579628', 'DROMLYIC');
-insert into ownership values('O397422', 'CW0BXN4D');
-insert into ownership values('O856431', '11BILTZ3');
-insert into ownership values('O451674', '66S2IDS4');
+create table property (
+    propertyID      varchar(15)         NOT NULL,
+    streetNo        varchar(10)         NOT NULL,
+    streetName      varchar(30)         NOT NULL,
+    propertyPostcode int                NOT NULL,
+    suburb          varchar(30)         NOT NULL,
+    state           varchar(20)         NOT NULL,
+    noBedrooms      int                 NOT NULL,
+    noBathrooms     int                 NOT NULL,
+    noParking       int                 NOT NULL,
+    propertyType    varchar(15)         NOT NULL,
+    buildArea       int,
+    landArea        int,
+    PRIMARY KEY (propertyID)
+);
 
 insert into property values ('6GR53F7D','15', 'Oyama Avenue', 2095, 'Manly', 'New South Wales', 4, 3, 2, 'House', 319, 609);
 insert into property values ('P13S78N7','10', 'Cowper Street', 2580, 'Goulbourn', 'New South Wales', 7, 4, 4, 'House', 1280, 2701);
@@ -88,6 +66,124 @@ insert into property values ('CW0BXN4D','14', 'Whale Beach Road', 2107, 'Whale B
 insert into property values ('11BILTZ3','9-15', 'Bayswater Road', 2011, 'Potts Point', 'New South Wales', 3, 3, 2, 'Apartment', 149, 149);
 insert into property values ('66S2IDS4','10-10', 'Paxton Street', 4810, 'North Ward', 'Queensland', 2, 1, 1, 'Apartment', 94, 98);
 
+create table ownership (
+    ownerID    varchar(15)          NOT NULL,
+    propertyID varchar(10)          NOT NULL,
+    FOREIGN KEY (OwnerID) references owners,
+    FOREIGN KEY (propertyID) references property
+);
+
+insert into ownership values('O019285', '6GR53F7D');
+insert into ownership values('O784321', 'P13S78N7');
+insert into ownership values('O197612', '6GR53F7D');
+insert into ownership values('O760124', 'AD2WMHM7');
+insert into ownership values('O760124', '5O168FZ0');
+insert into ownership values('O467689', 'CS11ICLF');
+insert into ownership values('O579628', 'DROMLYIC');
+insert into ownership values('O397422', 'CW0BXN4D');
+insert into ownership values('O856431', '11BILTZ3');
+insert into ownership values('O451674', 'P13S78N7');
+
+-- Question A: Get all the owners and their details from the database.
+select * from owners;
+
+-- A. RESULT TABLE
+
+--    OwnerID   ownerFName  ownerLName  ownerEmail                  ownerContact
+-------------------------------------------------------------------------------
+--    O019285	Micky	    Jones	    micky.jones@gmail.com	    0923876543
+--    O197612	Neo	        Anderson   neo.anderson@hotmail.com	    0456743985
+--    O985328	Juliet	    Chicote	    juliet_chicote@gmail.com	0410762354
+--    O784321	Abby	    Taperston	abby_Tap@msn.com	        0319872345
+--    O856431	Andy	    Lockertson	andy_loc@hotmail.com
+--    O397422	Julia	    Somerson	julia.somerson@gmail.com	0467943128
+--    O112924	Kylie	    Cook	    kylie.cook@gmail.com	    0940294768
+--    O907066	Dayami	    Archer	    dayami_archer@hotmail.com	0653689630
+--    O858242	Jaidyn	    Woodard	    jaidyn.woodard@gmail.com	0928452997
+--    O467689	Jazmyn	    Stout	    jazmyn_stout@msn.com	    0513775588
+--    O840716	Milagros	Marshall	milagros_marshall@hotmail.com
+--    O451674	Dallas	    Middleton	dallas_middleton@gmail.com	0591864571
+--    O579628	Royce	    Olsen	    royce_olsen@gmail.com	    0684497047
+--    O932653	Cassidy	    Lee	        cassidy_lee@hotmail.com	    0470079641
+--    O760124	Cody	    Mccarthy	cody_mccarthy@gmail.com	    0558192786
+
+-- Question B: Get all ownerships that are stored in database.
+select * from ownership;
+
+-- B. RESULT TABLE
+
+--    OwnerID     propertyID
+-----------------------------
+--    O019285	    6GR53F7D
+--    O784321	    P13S78N7
+--    O197612	    6GR53F7D
+--    O760124	    AD2WMHM7
+--    O760124	    5O168FZ0
+--    O467689	    CS11ICLF
+--    O579628	    DROMLYIC
+--    O397422	    CW0BXN4D
+--    O856431	    11BILTZ3
+--    O451674	    P13S78N7
 
 
+-- Question C: Get all the properties and their information from the database.
+select * from property;
+
+-- C. RESULT TABLE
+
+--  propertyID  streetno  streetname        postcode    suburb      state            nobedrooms nobathrooms noparking   propertytype    buildarea   landarea
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--  6GR53F7D	15	    Oyama Avenue	    2095	Manly	        New South Wales	    4	    3	        2	        House	        319	        609
+--  P13S78N7	10	    Cowper Street	    2580	Goulbourn	    New South Wales	    7	    4	        4	        House	        1280        2701
+--  AD2WMHM7	5	    Plunkett Road	    2088	Mossman	        New South Wales	    4	    4	        2	        House	        412	        701
+--  5O168FZ0	95	    Sunnyside Crescent	2068	Castlecrag	    New South Wales	    0	    0	        0	        Land	        0	        435
+--  CS11ICLF	419	    Lacmalac Road	    2720	Tumut	        New South Wales	    4	    2	        2	        House	        52	        98
+--  DROMLYIC	15	    Dobbie Avenue	    2518	East Corrimal	New South Wales	    6	    4	        3	        House	        497	        706
+--  CW0BXN4D	14	    Whale Beach Road	2107	Whale Beach	    New South Wales	    4	    3	        2	        House	        687	        982
+--  11BILTZ3	9-15	Bayswater Road	    2011	Potts Point	    New South Wales	    3	    3	        2	        Apartment	    149	        149
+--  66S2IDS4	10-10	Paxton Street	    4810	North Ward	    Queensland	        2	    1	        1	        Apartment	    94	        98
+
+
+-- Question D: Get suburbs where there are homes with less than equals to 3 bedrooms
+select suburb from property where nobedrooms <= 3 group by suburb;
+
+-- D. RESULT TABLE
+
+--  suburb
+---------------
+--  Castlecrag
+--  Potts Point
+--  North Ward
+
+
+-- Question E: Get name of owners alongside their street, suburb and state of their property from the database.
+select o.ownerfname, o.ownerlname, p.streetname, p.suburb, p.state
+from (ownership join owners o on ownership.ownerid = o.ownerid)
+join property p on ownership.propertyid = p.propertyid;
+
+-- E. RESULT TABLE
+
+-- ownerfname   ownerlname  streetname          suburb          state
+------------------------------------------------------------------------
+--  Neo	        Anderson	Oyama Avenue	    Manly	        New South Wales
+--  Micky	    Jones	    Oyama Avenue	    Manly	        New South Wales
+--  Dallas	    Middleton	Cowper Street	    Goulbourn	    New South Wales
+--  Abby	    Taperston	Cowper Street	    Goulbourn	    New South Wales
+--  Cody	    Mccarthy	Plunkett Road	    Mossman	        New South Wales
+--  Cody	    Mccarthy	Sunnyside Crescent	Castlecrag	    New South Wales
+--  Jazmyn	    Stout	    Lacmalac Road	    Tumut	        New South Wales
+--  Royce	    Olsen	    Dobbie Avenue	    East Corrimal	New South Wales
+--  Julia	    Somerson	Whale Beach Road	Whale Beach	    New South Wales
+--  Andy	    Lockertson	Bayswater Road	    Potts Point	    New South Wales
+
+-- Question F: Get the ID of properties that are from the suburb Manly.
+select propertyid from ownership natural join property
+where suburb = (select suburb from property where suburb like '%Manly%')
+
+-- F. RESULT TABLE
+
+--  propertyid  streetname      suburb
+--------------------------------------
+--  6GR53F7D	Oyama Avenue	Manly
+--  6GR53F7D	Oyama Avenue	Manly
 
