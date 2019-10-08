@@ -3,8 +3,10 @@
 	Kim Youngsang  13023510@student.uts.edu.au
 	Kim Minho      12576195@student.uts.edu.au
 
-	This database constructs the owner, the property
-	owned by owner and the advertisement based on the property.
+	This database constructs the owner, ad ownership
+	of property and details the relationship between
+	the property in the database and the owners who
+	own / don't own property
 
 	Website: https://www.domain.com.au/	*/
 
@@ -182,8 +184,8 @@ where suburb = (select suburb from property where suburb like '%Manly%')
 
 -- F. RESULT TABLE
 
---  propertyid  streetname      suburb
---------------------------------------
---  6GR53F7D	Oyama Avenue	Manly
---  6GR53F7D	Oyama Avenue	Manly
+--  propertyid
+---------------
+--  6GR53F7D
+--  6GR53F7D
 
